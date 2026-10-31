@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>趣味知识答题</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(160deg, #6a8dff 0%, #8b5cf6 100%);
+    color: #1f2937;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    min-height: 100%;
+  }
+  .card {
+    width: 100%;
+    max-width: 440px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.18);
+    padding: 28px 22px 26px;
+  }
+  .progress {
+    font-size: 13px;
+    color: #8b5cf6;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+  }
+  .question {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 22px;
+  }
+  .options { display: flex; flex-direction: column; gap: 12px; }
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    padding: 15px 16px;
+    font-size: 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 14px;
+    background: #f9fafb;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .option:active { transform: scale(0.98); }
+  .option .label {
+    flex: 0 0 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #ede9fe;
+    color: #7c3aed;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+  }
+  .option.correct { border-color: #22c55e; background: #f0fdf4; }
+  .option.correct .label { background: #22c55e; color: #fff; }
+  .option.wrong { border-color: #ef4444; background: #fef2f2; }
+  .option.wrong .label { background: #ef4444; color: #fff; }
+  .option.disabled { pointer-events: none; opacity: 0.85; }
+  .tip {
+    margin-top: 18px;
+    min-height: 22px;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .tip.ok { color: #16a34a; }
+  .tip.no { color: #dc2626; }
+  .next-btn {
+    margin-top: 18px;
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    background: #8b5cf6;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    display: none;
+  }
+  .next-btn:active { opacity: 0.9; }
+  /* 结束线索页 */
+  .clue { text-align: center; padding: 10px 4px; }
+  .clue .emoji { font-size: 46px; margin-bottom: 10px; }
+  .clue h2 { font-size: 20px; margin-bottom: 16px; color: #7c3aed; }
+  .clue .clue-text {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.6;
+    padding: 20px 16px;
+    background: linear-gradient(135deg, #fef9c3, #fde68a);
+    border-radius: 16px;
+    color: #92400e;
+  }
+</style>
+</head>
+<body>
+  <div class="card" id="card"></div>
+
+  <script>
+    // ===== 在这里编辑题目（可以有很多道，按顺序排列）=====
+    // answer 用 0=A, 1=B, 2=C, 3=D 表示正确答案
+    const QUESTIONS = [
+      {
+        q: "世界上面积最大的海洋是哪一个？",
+        options: ["大西洋", "印度洋", "太平洋", "北冰洋"],
+        answer: 2
+      }
+    ];
+
+    // ===== 全部答对后，显示的最终线索（这句话一会儿你告诉我）=====
+    const FINAL_CLUE = "恭喜通关！这里先放一句占位线索～";
+    // ===================================================
+
+    let current = 0;
+    const card = document.getElementById("card");
+    const LETTERS = ["A", "B", "C", "D"];
+
+    function renderQuestion() {
+      const item = QUESTIONS[current];
+      let html = '<div class="progress">第 ' + (current + 1) + ' / ' + QUESTIONS.length + ' 题</div>';
+      html += '<div class="question">' + item.q + '</div>';
+      html += '<div class="options">';
+      item.options.forEach(function (opt, i) {
+        html += '<button class="option" data-i="' + i + '">' +
+                  '<span class="label">' + LETTERS[i] + '</span>' +
+                  '<span class="text">' + opt + '</span>' +
+                '</button>';
+      });
+      html += '</div>';
+      html += '<div class="tip" id="tip"></div>';
+      html += '<button class="next-btn" id="nextBtn">下一题</button>';
+      card.innerHTML = html;
+
+      const buttons = card.querySelectorAll(".option");
+      buttons.forEach(function (btn) {
+        btn.addEventListener("click", function () { onSelect(parseInt(btn.dataset.i, 10)); });
+      });
+    }
+
+    function onSelect(choice) {
+      const item = QUESTIONS[current];
+      const buttons = card.querySelectorAll(".option");
+      const tip = document.getElementById("tip");
+      buttons.forEach(function (b) { b.classList.add("disabled"); });
+
+      if (choice === item.answer) {
+        buttons[choice].classList.add("correct");
+        tip.textContent = "答对了！";
+        tip.className = "tip ok";
+        const nextBtn = document.getElementById("nextBtn");
+        nextBtn.style.display = "block";
+        nextBtn.textContent = (current + 1 < QUESTIONS.length) ? "下一题" : "揭晓线索";
+        nextBtn.addEventListener("click", goNext);
+      } else {
+        buttons[choice].classList.add("wrong");
+        tip.textContent = "不对哦，再想想～";
+        tip.className = "tip no";
+        setTimeout(function () {
+          buttons.forEach(function (b) {
+            b.classList.remove("disabled", "wrong");
+          });
+          tip.textContent = "";
+          tip.className = "tip";
+        }, 900);
+      }
+    }
+
+    function goNext() {
+      current++;
+      if (current < QUESTIONS.length) {
+        renderQuestion();
+      } else {
+        renderClue();
+      }
+    }
+
+    function renderClue() {
+      card.innerHTML =
+        '<div class="clue">' +
+          '<div class="emoji">🎉</div>' +
+          '<h2>全部答对啦！</h2>' +
+          '<div class="clue-text">' + FINAL_CLUE + '</div>' +
+        '</div>';
+    }
+
+    renderQuestion();
+  </script>
+</body>
+</html>
