@@ -10,53 +10,50 @@
   body {
     font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
     background: linear-gradient(160deg, #6a8dff 0%, #8b5cf6 100%);
-    color: #1f2937;
+    color: #fff;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    padding: 20px;
+    padding: 34px 22px;
     min-height: 100%;
   }
-  .card {
-    width: 100%;
-    max-width: 440px;
-    background: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.18);
-    padding: 28px 22px 26px;
-  }
+  .wrap { width: 100%; max-width: 440px; margin: 0 auto; }
   .progress {
-    font-size: 13px;
-    color: #8b5cf6;
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
     font-weight: 600;
     letter-spacing: 0.5px;
-    margin-bottom: 14px;
+    margin-bottom: 18px;
   }
   .question {
-    font-size: 21px;
-    font-weight: 700;
-    line-height: 1.5;
-    margin-bottom: 22px;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.45;
+    color: #fff;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.12);
   }
-  .options { display: flex; flex-direction: column; gap: 12px; }
+  .options { display: flex; flex-direction: column; gap: 14px; }
   .option {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     width: 100%;
     text-align: left;
-    padding: 15px 16px;
-    font-size: 16px;
-    border: 2px solid #e5e7eb;
-    border-radius: 14px;
-    background: #f9fafb;
+    padding: 16px 18px;
+    font-size: 17px;
+    color: #1f2937;
+    border: none;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.96);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
     cursor: pointer;
     transition: all 0.15s ease;
   }
   .option:active { transform: scale(0.98); }
   .option .label {
-    flex: 0 0 28px;
-    height: 28px;
+    flex: 0 0 30px;
+    height: 30px;
     border-radius: 50%;
     background: #ede9fe;
     color: #7c3aed;
@@ -64,77 +61,103 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
+    font-size: 16px;
   }
-  .option.correct { border-color: #22c55e; background: #f0fdf4; }
+  .option.correct { background: #f0fdf4; box-shadow: 0 0 0 2px #22c55e; }
   .option.correct .label { background: #22c55e; color: #fff; }
-  .option.wrong { border-color: #ef4444; background: #fef2f2; }
+  .option.wrong { background: #fef2f2; box-shadow: 0 0 0 2px #ef4444; }
   .option.wrong .label { background: #ef4444; color: #fff; }
-  .option.disabled { pointer-events: none; opacity: 0.85; }
-  .tip {
-    margin-top: 18px;
-    min-height: 22px;
-    font-size: 15px;
-    font-weight: 600;
-    text-align: center;
-  }
-  .tip.ok { color: #16a34a; }
-  .tip.no { color: #dc2626; }
-  .next-btn {
+  .option.disabled { pointer-events: none; }
+  .option.selected { background: #ede9fe; box-shadow: 0 0 0 2px #7c3aed; }
+  .option.selected .label { background: #7c3aed; color: #fff; }
+  .hint { font-size: 13px; color: rgba(255,255,255,0.85); margin: -16px 0 22px; }
+  .submit-btn {
     margin-top: 18px;
     width: 100%;
     padding: 14px;
     font-size: 16px;
-    font-weight: 700;
-    color: #fff;
-    background: #8b5cf6;
+    font-weight: 800;
+    color: #7c3aed;
+    background: rgba(255,255,255,0.96);
     border: none;
-    border-radius: 14px;
+    border-radius: 16px;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  }
+  .submit-btn:active { opacity: 0.9; }
+  .tip {
+    margin-top: 20px;
+    min-height: 24px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+  }
+  .next-btn {
+    margin-top: 20px;
+    width: 100%;
+    padding: 15px;
+    font-size: 17px;
+    font-weight: 800;
+    color: #7c3aed;
+    background: #fff;
+    border: none;
+    border-radius: 16px;
     cursor: pointer;
     display: none;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
   }
   .next-btn:active { opacity: 0.9; }
-  /* 结束线索页 */
-  .clue { text-align: center; padding: 10px 4px; }
-  .clue .emoji { font-size: 46px; margin-bottom: 10px; }
-  .clue h2 { font-size: 20px; margin-bottom: 16px; color: #7c3aed; }
+  .clue { text-align: center; }
+  .clue .emoji { font-size: 50px; margin-bottom: 12px; }
+  .clue h2 { font-size: 22px; margin-bottom: 20px; color: #fff; }
   .clue .clue-text {
-    font-size: 22px;
+    font-size: 23px;
     font-weight: 800;
     line-height: 1.6;
-    padding: 20px 16px;
-    background: linear-gradient(135deg, #fef9c3, #fde68a);
-    border-radius: 16px;
-    color: #92400e;
+    padding: 24px 18px;
+    background: rgba(255,255,255,0.96);
+    border-radius: 18px;
+    color: #7c3aed;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+  }
+  .clue-img {
+    width: 100%;
+    max-width: 360px;
+    border-radius: 18px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+    display: block;
+    margin: 0 auto;
   }
 </style>
 </head>
 <body>
-  <div class="card" id="card"></div>
+  <div class="wrap" id="card"></div>
 
   <script>
-    // ===== 在这里编辑题目（可以有很多道，按顺序排列）=====
-    // answer 用 0=A, 1=B, 2=C, 3=D 表示正确答案
+    // ===== 题库（answer=单选正确项 0/1/2/3；answers=多选正确项数组；anyCorrect=选啥都对）=====
     const QUESTIONS = [
-      {
-        q: "世界上面积最大的海洋是哪一个？",
-        options: ["大西洋", "印度洋", "太平洋", "北冰洋"],
-        answer: 2
-      }
+      { q: "你最高的爬升记录是多少？", options: ["865 米", "1367 米", "1980 米", "2450 米"], answer: 1 },
+      { q: "你最爱吃的东西是什么？（多选）", options: ["排骨", "虾", "红烧肉", "火锅"], answers: [0, 1], multi: true },
+      { q: "最喜欢的女歌手是谁？", options: ["那英", "王菲", "邓紫棋", "孙燕姿"], answer: 1 },
+      { q: "最讨厌的运动项目是什么？", options: ["游泳", "篮球", "跑步", "羽毛球"], answer: 2 },
+      { q: "最喜欢的颜色是什么？", options: ["红色", "蓝色", "绿色", "黑色"], answer: 1 },
+      { q: "最常说的一句话是什么？", options: ["好家伙", "绝绝子", "啥也不是", "芭比Q了"], answer: 2 },
+      { q: "最喜欢的季节是哪个？", options: ["春天", "夏天", "秋天", "冬天"], anyCorrect: true }
     ];
-
-    // ===== 全部答对后，显示的最终线索（这句话一会儿你告诉我）=====
-    const FINAL_CLUE = "恭喜通关！这里先放一句占位线索～";
-    // ===================================================
+    // ===== 全部答对后显示的最终线索图片（文件名需为 clue.jpg / clue.png，和 index.html 放一起）=====
+    // ===========================================================
 
     let current = 0;
+    let selected = [];
     const card = document.getElementById("card");
     const LETTERS = ["A", "B", "C", "D"];
-
     function renderQuestion() {
       const item = QUESTIONS[current];
+      selected = [];
       let html = '<div class="progress">第 ' + (current + 1) + ' / ' + QUESTIONS.length + ' 题</div>';
       html += '<div class="question">' + item.q + '</div>';
+      if (item.multi) html += '<div class="hint">可以选多个，选好后点下面的「确认」</div>';
       html += '<div class="options">';
       item.options.forEach(function (opt, i) {
         html += '<button class="option" data-i="' + i + '">' +
@@ -143,44 +166,69 @@
                 '</button>';
       });
       html += '</div>';
+      if (item.multi) html += '<button class="submit-btn" id="submitBtn">确认</button>';
       html += '<div class="tip" id="tip"></div>';
-      html += '<button class="next-btn" id="nextBtn">下一题</button>';
+      html += '<button class="next-btn" id="nextBtn"></button>';
       card.innerHTML = html;
 
-      const buttons = card.querySelectorAll(".option");
-      buttons.forEach(function (btn) {
-        btn.addEventListener("click", function () { onSelect(parseInt(btn.dataset.i, 10)); });
+      card.querySelectorAll(".option").forEach(function (btn) {
+        btn.addEventListener("click", function () { onOption(parseInt(btn.dataset.i, 10)); });
       });
-    }
-
-    function onSelect(choice) {
-      const item = QUESTIONS[current];
-      const buttons = card.querySelectorAll(".option");
-      const tip = document.getElementById("tip");
-      buttons.forEach(function (b) { b.classList.add("disabled"); });
-
-      if (choice === item.answer) {
-        buttons[choice].classList.add("correct");
-        tip.textContent = "答对了！";
-        tip.className = "tip ok";
-        const nextBtn = document.getElementById("nextBtn");
-        nextBtn.style.display = "block";
-        nextBtn.textContent = (current + 1 < QUESTIONS.length) ? "下一题" : "揭晓线索";
-        nextBtn.addEventListener("click", goNext);
-      } else {
-        buttons[choice].classList.add("wrong");
-        tip.textContent = "不对哦，再想想～";
-        tip.className = "tip no";
-        setTimeout(function () {
-          buttons.forEach(function (b) {
-            b.classList.remove("disabled", "wrong");
-          });
-          tip.textContent = "";
-          tip.className = "tip";
-        }, 900);
+      if (item.multi) {
+        document.getElementById("submitBtn").addEventListener("click", checkMulti);
       }
     }
 
+    function onOption(i) {
+      const item = QUESTIONS[current];
+      const buttons = card.querySelectorAll(".option");
+      if (item.multi) {
+        const pos = selected.indexOf(i);
+        if (pos >= 0) { selected.splice(pos, 1); buttons[i].classList.remove("selected"); }
+        else { selected.push(i); buttons[i].classList.add("selected"); }
+        return;
+      }
+      const tip = document.getElementById("tip");
+      buttons.forEach(function (b) { b.classList.add("disabled"); });
+      if (item.anyCorrect || i === item.answer) {
+        buttons[i].classList.add("correct");
+        showNext();
+      } else {
+        buttons[i].classList.add("wrong");
+        tip.textContent = "不对哦，再想想～";
+        setTimeout(function () {
+          buttons.forEach(function (b) { b.classList.remove("disabled", "wrong"); });
+          tip.textContent = "";
+        }, 900);
+      }
+    }
+    function checkMulti() {
+      const item = QUESTIONS[current];
+      const buttons = card.querySelectorAll(".option");
+      const tip = document.getElementById("tip");
+      const want = item.answers.slice().sort().join(",");
+      const got = selected.slice().sort().join(",");
+      if (selected.length > 0 && want === got) {
+        buttons.forEach(function (b) { b.classList.add("disabled"); });
+        selected.forEach(function (i) {
+          buttons[i].classList.remove("selected");
+          buttons[i].classList.add("correct");
+        });
+        document.getElementById("submitBtn").style.display = "none";
+        showNext();
+      } else {
+        tip.textContent = "还不对，再选选看～";
+        setTimeout(function () { tip.textContent = ""; }, 1200);
+      }
+    }
+
+    function showNext() {
+      document.getElementById("tip").textContent = "答对了！";
+      const nextBtn = document.getElementById("nextBtn");
+      nextBtn.style.display = "block";
+      nextBtn.textContent = (current + 1 < QUESTIONS.length) ? "下一题" : "揭晓线索";
+      nextBtn.addEventListener("click", goNext);
+    }
     function goNext() {
       current++;
       if (current < QUESTIONS.length) {
@@ -194,9 +242,17 @@
       card.innerHTML =
         '<div class="clue">' +
           '<div class="emoji">🎉</div>' +
-          '<h2>全部答对啦！</h2>' +
-          '<div class="clue-text">' + FINAL_CLUE + '</div>' +
+          '<h2>全部答对啦！这是最后的线索</h2>' +
+          '<img id="clueImg" class="clue-img" alt="线索" />' +
         '</div>';
+      const candidates = ["clue.jpg", "clue.jpeg", "clue.png"];
+      let idx = 0;
+      const img = document.getElementById("clueImg");
+      img.onerror = function () {
+        idx++;
+        if (idx < candidates.length) img.src = candidates[idx];
+      };
+      img.src = candidates[0];
     }
 
     renderQuestion();
