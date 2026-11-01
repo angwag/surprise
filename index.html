@@ -9,167 +9,122 @@
   html, body { height: 100%; }
   body {
     font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: linear-gradient(160deg, #6a8dff 0%, #8b5cf6 100%);
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 34px 22px;
+    background: #5a57e6;
+    color: #141414;
     min-height: 100%;
   }
-  .wrap { width: 100%; max-width: 440px; margin: 0 auto; }
-  .progress {
-    font-size: 14px;
-    color: rgba(255,255,255,0.85);
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    margin-bottom: 18px;
-    text-align: center;
-  }
-  .question {
-    font-size: 28px;
-    font-weight: 800;
-    line-height: 1.45;
-    color: #fff;
-    margin-bottom: 30px;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.12);
-    text-align: center;
-  }
-  .options { display: flex; flex-direction: column; gap: 14px; }
-  .option {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    width: 100%;
-    text-align: left;
-    padding: 16px 18px;
-    font-size: 17px;
-    color: #1f2937;
-    border: none;
-    border-radius: 16px;
-    background: rgba(255,255,255,0.96);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-    cursor: pointer;
-    transition: all 0.15s ease;
-  }
-  .option:active { transform: scale(0.98); }
-  .option .label {
-    flex: 0 0 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: #ede9fe;
-    color: #7c3aed;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-  }
-  .option.correct { background: #f0fdf4; box-shadow: 0 0 0 2px #22c55e; }
-  .option.correct .label { background: #22c55e; color: #fff; }
-  .option.wrong { background: #fef2f2; box-shadow: 0 0 0 2px #ef4444; }
-  .option.wrong .label { background: #ef4444; color: #fff; }
-  .option.disabled { pointer-events: none; }
-  .option.selected { background: #ede9fe; box-shadow: 0 0 0 2px #7c3aed; }
-  .option.selected .label { background: #7c3aed; color: #fff; }
-  .hint { font-size: 13px; color: rgba(255,255,255,0.85); margin: -16px 0 22px; text-align: center; }
-  .submit-btn {
-    margin-top: 18px;
-    width: 100%;
-    padding: 14px;
-    font-size: 16px;
-    font-weight: 800;
-    color: #7c3aed;
-    background: rgba(255,255,255,0.96);
-    border: none;
-    border-radius: 16px;
-    cursor: pointer;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-  }
-  .submit-btn:active { opacity: 0.9; }
-  .tip {
-    margin-top: 20px;
-    min-height: 24px;
-    font-size: 16px;
-    font-weight: 700;
-    text-align: center;
-    color: #fff;
-  }
-  .next-btn {
-    margin-top: 20px;
-    width: 100%;
-    padding: 15px;
-    font-size: 17px;
-    font-weight: 800;
-    color: #7c3aed;
-    background: #fff;
-    border: none;
-    border-radius: 16px;
-    cursor: pointer;
-    display: none;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-  }
-  .next-btn:active { opacity: 0.9; }
-  .clue { text-align: center; }
-  .clue .emoji { font-size: 50px; margin-bottom: 12px; }
-  .clue h2 { font-size: 22px; margin-bottom: 20px; color: #fff; }
-  .clue .clue-text {
-    font-size: 23px;
-    font-weight: 800;
-    line-height: 1.6;
-    padding: 24px 18px;
-    background: rgba(255,255,255,0.96);
-    border-radius: 18px;
-    color: #7c3aed;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.18);
-  }
-  .clue-img {
-    width: 100%;
-    max-width: 360px;
-    border-radius: 18px;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.18);
-    display: block;
-    margin: 0 auto;
-  }
-  .nav { margin-top: 20px; display: flex; gap: 12px; }
-  .nav-btn {
-    flex: 1;
-    padding: 15px;
-    font-size: 16px;
-    font-weight: 800;
-    border: none;
-    border-radius: 16px;
-    cursor: pointer;
-  }
-  .nav-btn:active { opacity: 0.9; }
-  .nav-btn.next { color: #7c3aed; background: #fff; box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
-  .nav-btn.back { color: #fff; background: rgba(255,255,255,0.18); border: 2px solid rgba(255,255,255,0.65); }
+  #card { min-height: 100%; }
   .start { position: fixed; inset: 0; }
   .start-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .start-overlay {
     position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    padding: 20px;
+    display: flex; align-items: flex-end; justify-content: center;
+    padding: 0 20px 16%;
   }
   .start-btn {
-    padding: 18px 36px;
-    font-size: 20px;
-    font-weight: 800;
+    padding: 20px 46px;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 1px;
     color: #fff;
-    background: linear-gradient(135deg, #6a8dff, #8b5cf6);
+    background: linear-gradient(135deg, #7aa0ff, #8b5cf6);
     border: none;
     border-radius: 999px;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 0 #5b3fc4, 0 18px 28px rgba(91,63,196,0.45);
     cursor: pointer;
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
   }
-  .start-btn:active { transform: scale(0.97); }
+  .start-btn:active {
+    transform: translateY(6px);
+    box-shadow: 0 2px 0 #5b3fc4, 0 6px 12px rgba(91,63,196,0.4);
+  }
+  .q-screen { position: relative; min-height: 100vh; overflow: hidden; }
+  .beam {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #ffcc00;
+    clip-path: polygon(18% 13%, 30% 13%, 72% 100%, -5% 100%);
+    z-index: 0;
+  }
+  .lamp-cord { position: absolute; top: 0; left: 24%; width: 4px; height: 13%; background: #141414; z-index: 1; }
+  .lamp-dome {
+    position: absolute; top: 13%; left: calc(24% - 60px);
+    width: 122px; height: 60px;
+    background: #f4452e;
+    border-radius: 122px 122px 0 0;
+    z-index: 1;
+  }
+  .avatar {
+    position: absolute; top: 24px; right: 22px;
+    width: 112px; height: 112px;
+    border-radius: 22px;
+    background-repeat: no-repeat;
+    background-size: 300% 200%;
+    z-index: 2;
+  }
+  .q-content { position: relative; z-index: 3; padding: 150px 24px 44px; }
+  .progress { font-size: 15px; color: #141414; font-weight: 700; margin-bottom: 14px; }
+  .progress b { font-size: 21px; }
+  .question {
+    font-size: 30px; font-weight: 900; line-height: 1.35;
+    color: #141414; margin-bottom: 28px; text-align: left; max-width: 72%;
+  }
+  .hint { font-size: 13px; color: rgba(20,20,20,0.7); margin: -20px 0 20px; }
+  .options { display: flex; flex-direction: column; gap: 18px; }
+  .option {
+    position: relative; width: 100%; min-height: 60px;
+    padding: 16px 18px 16px 46px;
+    font-size: 18px; font-weight: 800; color: #141414;
+    background: #d2cff2;
+    border: 3px solid #141414;
+    border-radius: 40px;
+    box-shadow: 3px 4px 0 rgba(20,20,20,0.9);
+    cursor: pointer; text-align: center;
+  }
+  .option .label {
+    position: absolute; left: -10px; top: 50%; transform: translateY(-50%);
+    width: 52px; height: 52px; border-radius: 50%;
+    background: #141414; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 900; border: 3px solid #141414;
+  }
+  .option.selected { background: #b3adf0; box-shadow: 1px 2px 0 rgba(20,20,20,0.9); transform: translate(2px, 2px); }
+  .option.correct { background: #abe9ba; }
+  .option.wrong { background: #ffbcbc; }
+  .option.disabled { pointer-events: none; }
+  .tip { margin-top: 16px; min-height: 22px; font-size: 16px; font-weight: 800; color: #141414; text-align: center; }
+  .submit-btn {
+    margin-top: 22px; width: 100%; padding: 16px;
+    font-size: 18px; font-weight: 900; color: #fff;
+    background: #141414; border: none; border-radius: 40px;
+    cursor: pointer; box-shadow: 3px 4px 0 rgba(0,0,0,0.3);
+  }
+  .submit-btn:active { transform: translate(1px, 2px); }
+  .nav { margin-top: 26px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-btn { font-weight: 900; border: none; cursor: pointer; }
+  .nav-btn.back { background: transparent; color: #141414; font-size: 18px; padding: 8px 2px; }
+  .nav-btn.next {
+    background: #141414; color: #fff; font-size: 18px;
+    padding: 14px 30px; border-radius: 40px;
+    box-shadow: 3px 4px 0 rgba(0,0,0,0.3);
+  }
+  .nav-btn.next:active { transform: translate(1px, 2px); }
+  .clue { position: relative; z-index: 3; text-align: center; padding: 70px 24px; }
+  .clue .emoji { font-size: 50px; margin-bottom: 12px; }
+  .clue h2 { font-size: 22px; margin-bottom: 22px; color: #fff; }
+  .clue-img {
+    width: 100%; max-width: 360px; border-radius: 18px;
+    display: block; margin: 0 auto;
+    border: 3px solid #141414;
+    box-shadow: 6px 8px 0 rgba(0,0,0,0.25);
+  }
 </style>
 </head>
 <body>
-  <div class="wrap" id="card"></div>
+  <div id="card"></div>
 
   <script>
-    // ===== 题库（answer=单选正确项 0/1/2/3；answers=多选正确项数组；anyCorrect=选啥都对）=====
+    // ===== 题库（answer=单选正确项；answers=多选正确项数组；anyCorrect=选啥都对）=====
     const QUESTIONS = [
       { q: "你最高的爬升记录是多少？", options: ["865 米", "1367 米", "1980 米", "2450 米"], answer: 1 },
       { q: "你最爱吃的东西是什么？（多选）", options: ["排骨", "虾", "红烧肉", "火锅"], answers: [0, 1], multi: true },
@@ -179,13 +134,42 @@
       { q: "最常说的一句话是什么？", options: ["好家伙", "绝绝子", "啥也不是", "芭比Q了"], answer: 2 },
       { q: "最喜欢的季节是哪个？", options: ["春天", "夏天", "秋天", "冬天"], anyCorrect: true }
     ];
-    // ===== 全部答对后显示的最终线索图片（文件名需为 clue.jpg / clue.png，和 index.html 放一起）=====
-    // ===========================================================
+    // 答对全部后显示 clue.jpg/png；头像精灵图用 faces.jpg/png（图二，3列2行6个表情）
 
     let current = 0;
     let selected = [];
+    let faceUrl = "";
     const card = document.getElementById("card");
     const LETTERS = ["A", "B", "C", "D"];
+    const FACE_CELLS = [[0,0],[50,0],[100,0],[0,100],[50,100],[100,100]];
+    function resolveFace() {
+      const candidates = ["faces.jpg", "faces.jpeg", "faces.png"];
+      let idx = 0;
+      (function tryNext() {
+        if (idx >= candidates.length) return;
+        const im = new Image();
+        im.onload = function () { faceUrl = candidates[idx]; setAvatar(); };
+        im.onerror = function () { idx++; tryNext(); };
+        im.src = candidates[idx];
+      })();
+    }
+
+    function setAvatar() {
+      const avatar = document.getElementById("avatar");
+      if (!avatar) return;
+      if (!faceUrl) { avatar.style.display = "none"; return; }
+      const cell = FACE_CELLS[current % FACE_CELLS.length];
+      avatar.style.display = "block";
+      avatar.style.backgroundImage = "url('" + faceUrl + "')";
+      avatar.style.backgroundPosition = cell[0] + "% " + cell[1] + "%";
+    }
+
+    function setImgWithFallback(img, candidates) {
+      let idx = 0;
+      img.onerror = function () { idx++; if (idx < candidates.length) img.src = candidates[idx]; };
+      img.src = candidates[0];
+    }
+
     function renderStart() {
       card.innerHTML =
         '<div class="start">' +
@@ -200,17 +184,14 @@
         renderQuestion();
       });
     }
-
-    function setImgWithFallback(img, candidates) {
-      let idx = 0;
-      img.onerror = function () { idx++; if (idx < candidates.length) img.src = candidates[idx]; };
-      img.src = candidates[0];
-    }
-
     function renderQuestion() {
       const item = QUESTIONS[current];
       selected = [];
-      let html = '<div class="progress">第 ' + (current + 1) + ' / ' + QUESTIONS.length + ' 题</div>';
+      let html = '<div class="q-screen">';
+      html += '<div class="beam"></div><div class="lamp-cord"></div><div class="lamp-dome"></div>';
+      html += '<div class="avatar" id="avatar"></div>';
+      html += '<div class="q-content">';
+      html += '<div class="progress">第 <b>' + (current + 1) + '</b> 题 / 共 <b>' + QUESTIONS.length + '</b> 题</div>';
       html += '<div class="question">' + item.q + '</div>';
       if (item.multi) html += '<div class="hint">这道是多选，可以选多个</div>';
       html += '<div class="options">';
@@ -224,7 +205,9 @@
       html += '<button class="submit-btn" id="submitBtn">确认答案</button>';
       html += '<div class="tip" id="tip"></div>';
       html += '<div class="nav" id="nav"></div>';
+      html += '</div></div>';
       card.innerHTML = html;
+      setAvatar();
 
       card.querySelectorAll(".option").forEach(function (btn) {
         btn.addEventListener("click", function () { onOption(parseInt(btn.dataset.i, 10)); });
@@ -248,24 +231,14 @@
       const item = QUESTIONS[current];
       const buttons = card.querySelectorAll(".option");
       const tip = document.getElementById("tip");
-      if (selected.length === 0) {
-        tip.textContent = "请先选择一个答案～";
-        return;
-      }
+      if (selected.length === 0) { tip.textContent = "请先选择一个答案～"; return; }
       let correct;
-      if (item.anyCorrect) {
-        correct = true;
-      } else if (item.multi) {
-        correct = item.answers.slice().sort().join(",") === selected.slice().sort().join(",");
-      } else {
-        correct = selected[0] === item.answer;
-      }
+      if (item.anyCorrect) correct = true;
+      else if (item.multi) correct = item.answers.slice().sort().join(",") === selected.slice().sort().join(",");
+      else correct = selected[0] === item.answer;
       if (correct) {
         buttons.forEach(function (b) { b.classList.add("disabled"); });
-        selected.forEach(function (i) {
-          buttons[i].classList.remove("selected");
-          buttons[i].classList.add("correct");
-        });
+        selected.forEach(function (i) { buttons[i].classList.remove("selected"); buttons[i].classList.add("correct"); });
         document.getElementById("submitBtn").style.display = "none";
         tip.textContent = "答对了！";
         renderNav();
@@ -279,11 +252,11 @@
         }, 1000);
       }
     }
-
     function renderNav() {
       const nav = document.getElementById("nav");
       let html = "";
-      if (current > 0) html += '<button class="nav-btn back" id="backBtn">返回上一题</button>';
+      if (current > 0) html += '<button class="nav-btn back" id="backBtn">← 上一步</button>';
+      else html += '<span></span>';
       html += '<button class="nav-btn next" id="goBtn">' +
               ((current + 1 < QUESTIONS.length) ? "下一题" : "揭晓线索") + '</button>';
       nav.innerHTML = html;
@@ -291,16 +264,12 @@
       document.getElementById("goBtn").addEventListener("click", goNext);
     }
 
-    function goBack() {
-      if (current > 0) { current--; renderQuestion(); }
-    }
+    function goBack() { if (current > 0) { current--; renderQuestion(); } }
+
     function goNext() {
       current++;
-      if (current < QUESTIONS.length) {
-        renderQuestion();
-      } else {
-        renderClue();
-      }
+      if (current < QUESTIONS.length) renderQuestion();
+      else renderClue();
     }
 
     function renderClue() {
@@ -310,16 +279,10 @@
           '<h2>全部答对啦！这是最后的线索</h2>' +
           '<img id="clueImg" class="clue-img" alt="线索" />' +
         '</div>';
-      const candidates = ["clue.jpg", "clue.jpeg", "clue.png"];
-      let idx = 0;
-      const img = document.getElementById("clueImg");
-      img.onerror = function () {
-        idx++;
-        if (idx < candidates.length) img.src = candidates[idx];
-      };
-      img.src = candidates[0];
+      setImgWithFallback(document.getElementById("clueImg"), ["clue.jpg", "clue.jpeg", "clue.png"]);
     }
 
+    resolveFace();
     renderStart();
   </script>
 </body>
